@@ -1,7 +1,6 @@
-from rest_framework import routers
-from .api import ReviewViewSet
+from django.urls import path
+from reviews import views
 
-router = routers.DefaultRouter()
-router.register('api/reviews', ReviewViewSet, 'reviews')
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('reviews/', views.review_list),
+]

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'whitenoise', #for serving static files (not relevant for production)
     'corsheaders', # for protection against csrf and for successful working with frontend request
     'reviews'
