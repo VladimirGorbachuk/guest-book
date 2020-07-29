@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'whitenoise', #for serving static files (not relevant for production)
     'corsheaders', # for protection against csrf and for successful working with frontend request
-    'reviews'
+    'reviews',
+    'frontend' # contains urls.py and views.py files, function-style view, returning index.html
 ]
 
 MIDDLEWARE = [
