@@ -1,6 +1,7 @@
 from reviews.models import Review
 from rest_framework import viewsets, permissions
 from .serializers import ReviewSerializer
+from rest_framework.permissions import AllowAny
 
 # Lead Viewset
 
