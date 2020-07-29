@@ -1,7 +1,9 @@
 import addReview from "./actions/actions.js";
 import ADD_REVIEW from "./actions/actionTypes.js";
 
-function reviewApp(state = initialState, action) {
+const INITIAL_STATE = [];
+
+function reviewApp(state = INITIAL_STATE, action) {
   switch (action.type) {
     case ADD_REVIEW:
       return Object.assign({}, state, {

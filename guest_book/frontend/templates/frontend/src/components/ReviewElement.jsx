@@ -6,7 +6,7 @@ const reviewElement = ({ user, message, image, datePosted }) => (
   <li>
     {user}
     {message}
-    <img src={image}></img>
+    <img src={image} alt="image"></img>
     {datePosted}
   </li>
 );
