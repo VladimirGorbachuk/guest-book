@@ -2,6 +2,8 @@ from rest_framework import serializers
 from reviews.models import Review
 
 class ReviewSerializer(serializers.ModelSerializer):
+
+    
     class Meta:
         model = Review
         fields = ['name','message','image']
@@ -11,7 +13,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     message = serializers.CharField(
         min_length=16,
         max_length=512,)
-    image = serializers.ImageField(required = False)
+    image = serializers.ImageField(required = False, use_url = True)
 
     def create(self, validated_data):
         """

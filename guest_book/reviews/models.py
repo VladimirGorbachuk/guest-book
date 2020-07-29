@@ -1,5 +1,6 @@
 from django.db import models
 from .image_sizes import IMAGE_SIZE
+from PIL import Image
 
 class Review(models.Model):
     '''
