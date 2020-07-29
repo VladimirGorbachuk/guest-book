@@ -3,13 +3,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const reviewElement = ({ user, message, image, datePosted }) => (
-  <li
-    onClick={onClick}
-    style={{
-      textDecoration: completed ? "line-through" : "none",
-    }}
-  >
-    {text}
+  <li>
+    {user}
+    {message}
+    <img src={image}></img>
+    {datePosted}
   </li>
 );
 
@@ -18,7 +16,5 @@ reviewElement.propTypes = {
   message: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date),
 };
-
-export default Todo;
 
 export default reviewElement;
