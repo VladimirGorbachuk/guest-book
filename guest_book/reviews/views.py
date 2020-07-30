@@ -10,6 +10,7 @@ def review_list(request):
     """
     List all reviews/create new review.
     """
+    
     if request.method == 'GET':
         reviews = Review.objects.all()
         serializer = ReviewSerializer(reviews, many=True)

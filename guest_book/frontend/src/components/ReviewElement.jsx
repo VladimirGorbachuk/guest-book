@@ -11,10 +11,10 @@ const ReviewElement = ({ user, message, image, datePosted }) => {
           {user}
         </p>
         <p>
-          <span>username:</span>
+          <span>message:</span>
           {message}:
         </p>
-        <span>image</span>
+        <span>image:</span>
         <img src={image} alt="image"></img>
         <p>
           <span>date posted:</span>
@@ -30,7 +30,7 @@ const ReviewElement = ({ user, message, image, datePosted }) => {
           {user}
         </p>
         <p>
-          <span>username:</span>
+          <span>message:</span>
           {message}:
         </p>
         <p>
@@ -45,6 +45,7 @@ const ReviewElement = ({ user, message, image, datePosted }) => {
 reviewElement.propTypes = {
   user: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
+  image: PropTypes.any.isRequired, //due to possible null image
   date: PropTypes.instanceOf(Date),
 };
 
