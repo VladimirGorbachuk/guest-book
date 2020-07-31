@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import addReview from "../actions/actions";
-import axios from "axios";
+import { addReview } from "../actions";
 
-function writeReview() {
+const WriteReview = () => {
   const [name, setName] = React.useState("");
   const [review, setReview] = React.useState("");
   const [image, setImage] = React.useState(null);
@@ -48,21 +46,14 @@ function writeReview() {
           <button
             type="submit"
             onClick={() => {
-              addReview(name, review, image);
+              formData = new FormData();
+              addReview(formData);
             }}
           ></button>
         </div>
       </form>
     </div>
   );
-}
-
-function handleChange(evt) {
-  const value = evt.target.value;
-  setState({
-    ...state,
-    [evt.target.name]: value,
-  });
-}
+};
 
 export default WriteReview;

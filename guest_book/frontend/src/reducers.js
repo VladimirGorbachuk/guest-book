@@ -1,11 +1,14 @@
-import addReview from "./actions/actions.js";
-import ADD_REVIEW from "./actions/actionTypes.js";
+import {
+  ADD_REVIEW_SUCCESS,
+  ADD_REVIEW_STARTED,
+  ADD_REVIEW_FAILURE,
+} from "./actionTypes";
 
 const INITIAL_STATE = [];
 
-function reviewApp(state = INITIAL_STATE, action) {
+const rootReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ADD_REVIEW:
+    case ADD_REVIEW_SUCCESS:
       return Object.assign({}, state, {
         reviews: [
           ...state.reviews,
@@ -16,9 +19,13 @@ function reviewApp(state = INITIAL_STATE, action) {
           },
         ],
       });
+    case ADD_REVIEW_STARTED:
+      return; // TODO
+    case ADD_REVIEW_FAILURE:
+      return; // TODO
     default:
       return state;
   }
-}
+};
 
-export default reviewApp;
+export default rootReducer;

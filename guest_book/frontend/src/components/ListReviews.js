@@ -1,10 +1,8 @@
-//component for listing reviews
-
 import React from "react";
 import PropTypes from "prop-types";
 import ReviewElement from "./ReviewElement";
 
-const ReviewList = ({ todos, onTodoClick }) => (
+const ListReviews = ({ todos, onTodoClick }) => (
   <ul>
     {todos.map((todo, index) => (
       <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
@@ -17,4 +15,4 @@ ListReviews.propTypes = {
     .isRequired,
 };
 
-export default listReviews;
+export default ListReviews;

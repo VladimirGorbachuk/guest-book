@@ -1,4 +1,5 @@
-export const URLS = {
-  SERVER: "127.0.0.1:8000/",
-  REVIEWS: "reviews/",
+const SERVER_ADDRESS = "http://127.0.0.1:8000/";
+
+export default URLS = {
+  REVIEWS: SERVER_ADDRESS + "reviews/",
 };
