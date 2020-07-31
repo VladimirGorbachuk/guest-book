@@ -2,23 +2,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ReviewElement = ({ user, message, image, datePosted }) => {
+const Review = (review) => {
   if (!!image) {
     return (
       <li>
         <p>
           <span>username:</span>
-          {user}
+          {review.user}
         </p>
         <p>
           <span>message:</span>
-          {message}:
+          {review.message}:
         </p>
         <span>image:</span>
-        <img src={image} alt="image"></img>
+        <img src={review.image} alt="image"></img>
         <p>
           <span>date posted:</span>
-          {datePosted}
+          {review.datePosted}
         </p>
       </li>
     );
@@ -27,26 +27,26 @@ const ReviewElement = ({ user, message, image, datePosted }) => {
       <li>
         <p>
           <span>username:</span>
-          {user}
+          {review.user}
         </p>
         <p>
           <span>message:</span>
-          {message}:
+          {review.message}
         </p>
         <p>
           <span>date posted:</span>
-          {datePosted}
+          {review.datePosted}
         </p>
       </li>
     );
   }
 };
 
-reviewElement.propTypes = {
+Review.propTypes = {
   user: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   image: PropTypes.any.isRequired, //due to possible null image
   date: PropTypes.instanceOf(Date),
 };
 
-export default ReviewElement;
+export default Review;

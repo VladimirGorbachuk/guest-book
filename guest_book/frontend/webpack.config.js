@@ -2,7 +2,7 @@ const path = require("path");
 module.exports = {
   entry: { main: "./src/index.js" },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "static/frontend/"),
     filename: "main.js",
   },
   module: {
