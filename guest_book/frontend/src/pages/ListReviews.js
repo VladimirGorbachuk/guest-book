@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchReviews, reviewsSelector } from "../slices/listReviews";
 
+//import { postReviewSelector } from "../slices/postNewReview";
+import { postReviewDisplay } from "../slices/postNewReview";
 import Review from "../components/Review";
+import PostNewReview from "../components/PostNewReview";
 
 const ListReviews = () => {
   const dispatch = useDispatch();
-  const { reviews, loading, hasErrors } = useSelector((state) => {
-    console.log(state);
-    return state.reviewsReducer;
-  });
+  const { reviews, loading, hasErrors } = useSelector(reviewsSelector);
 
   useEffect(() => {
     dispatch(fetchReviews());
@@ -25,9 +25,14 @@ const ListReviews = () => {
     ));
   };
 
+  const showForm = (e) => {
+    dispatch(postReviewDisplay());
+  };
+
   return (
     <section>
-      <button>Add your review</button>
+      <button onClick={showForm}>Add your review</button>
+      <PostNewReview />
       <h1>Reviews</h1>
       {renderReviews()}
     </section>

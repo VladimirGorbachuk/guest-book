@@ -36823,6 +36823,92 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./src/components/PostNewReview.js":
+/*!*****************************************!*\
+  !*** ./src/components/PostNewReview.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../slices/postNewReview */ "./src/slices/postNewReview.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var PostNewReview = function PostNewReview() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      name = _React$useState2[0],
+      setName = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      review = _React$useState4[0],
+      setReview = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(null),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      image = _React$useState6[0],
+      setImage = _React$useState6[1]; //TODO:currently not used hooks
+
+
+  var postReviewState = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__["postReviewSelector"]);
+
+  if (postReviewState.showForm === true) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Enter your name", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "text",
+      name: "name",
+      value: name,
+      onChange: function onChange(e) {
+        return setName(e.target.value);
+      }
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Write your review below", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "text",
+      name: "review",
+      value: review,
+      onChange: function onChange(e) {
+        return setReview(e.target.value);
+      }
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Choose image (optional)", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "file",
+      name: "image",
+      value: image,
+      onChange: function onChange(e) {
+        return setImage(e.target.value);
+      }
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "submit",
+      onClick: function onClick() {
+        formData = new FormData();
+        addReview(formData);
+      }
+    }))));
+  } else {
+    return null;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostNewReview);
+
+/***/ }),
+
 /***/ "./src/components/Review.js":
 /*!**********************************!*\
   !*** ./src/components/Review.js ***!
@@ -36919,7 +37005,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _slices_listReviews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../slices/listReviews */ "./src/slices/listReviews.js");
-/* harmony import */ var _components_Review__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Review */ "./src/components/Review.js");
+/* harmony import */ var _slices_postNewReview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../slices/postNewReview */ "./src/slices/postNewReview.js");
+/* harmony import */ var _components_Review__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Review */ "./src/components/Review.js");
+/* harmony import */ var _components_PostNewReview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/PostNewReview */ "./src/components/PostNewReview.js");
+
+
+ //import { postReviewSelector } from "../slices/postNewReview";
 
 
 
@@ -36928,10 +37019,7 @@ __webpack_require__.r(__webpack_exports__);
 var ListReviews = function ListReviews() {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
 
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    console.log(state);
-    return state.reviewsReducer;
-  }),
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_slices_listReviews__WEBPACK_IMPORTED_MODULE_2__["reviewsSelector"]),
       reviews = _useSelector.reviews,
       loading = _useSelector.loading,
       hasErrors = _useSelector.hasErrors;
@@ -36945,14 +37033,20 @@ var ListReviews = function ListReviews() {
     if (hasErrors) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Unable to display reviews");
     console.log("the reviews we are mapping to this page are:", reviews);
     return reviews.map(function (review) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Review__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Review__WEBPACK_IMPORTED_MODULE_4__["default"], {
         key: review.name + review.message,
         review: review
       });
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Add your review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Reviews"), renderReviews());
+  var showForm = function showForm(e) {
+    dispatch(Object(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_3__["postReviewDisplay"])());
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: showForm
+  }, "Add your review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PostNewReview__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Reviews"), renderReviews());
 }; //TODO: button isn't working currently
 
 
@@ -37047,7 +37141,7 @@ var getReviews = actions.getReviews,
 /* harmony default export */ __webpack_exports__["default"] = (reviewsReducer); // A selector
 
 var reviewsSelector = function reviewsSelector(state) {
-  return state.reviews;
+  return state.reviewsReducer;
 };
 
 /***/ }),
@@ -37056,16 +37150,18 @@ var reviewsSelector = function reviewsSelector(state) {
 /*!*************************************!*\
   !*** ./src/slices/postNewReview.js ***!
   \*************************************/
-/*! exports provided: postReviewSlice, addReview, postReview, postReviewSuccess, postReviewFailure, default, postReviewSelector */
+/*! exports provided: postReviewSlice, sendReview, postReview, postReviewSuccess, postReviewFailure, postReviewDisplay, postReviewValidationError, default, postReviewSelector */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postReviewSlice", function() { return postReviewSlice; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addReview", function() { return addReview; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendReview", function() { return sendReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postReview", function() { return postReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postReviewSuccess", function() { return postReviewSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postReviewFailure", function() { return postReviewFailure; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postReviewDisplay", function() { return postReviewDisplay; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postReviewValidationError", function() { return postReviewValidationError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postReviewSelector", function() { return postReviewSelector; });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var _validators_validateReviewFormData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../validators/validateReviewFormData */ "./src/validators/validateReviewFormData.js");
@@ -37086,14 +37182,22 @@ var postReviewSlice = Object(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__["crea
   initialState: {
     sending: false,
     hasErrors: false,
-    newReview: {}
+    newReview: {},
+    showForm: false,
+    validationError: null
   },
   reducers: {
+    postReviewDisplay: function postReviewDisplay(state) {
+      state.showForm = true;
+    },
     postReviewValidationError: function postReviewValidationError(state, err) {
       state.hasErrors = true; //need to show particular error
+
+      state.validationError = err.text;
     },
     postReview: function postReview(state) {
       state.sending = true;
+      state.validationError = null;
     },
     postReviewSuccess: function postReviewSuccess(state, _ref) {
       var payload = _ref.payload;
@@ -37109,7 +37213,7 @@ var postReviewSlice = Object(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__["crea
     }
   }
 });
-var addReview = function addReview(formData) {
+var sendReview = function sendReview(formData) {
   Object(_validators_validateReviewFormData__WEBPACK_IMPORTED_MODULE_1__["default"])(formData)["catch"](function (err) {
     return dispatch(err);
   });
@@ -37144,12 +37248,14 @@ var actions = postReviewSlice.actions,
 
 var postReview = actions.postReview,
     postReviewSuccess = actions.postReviewSuccess,
-    postReviewFailure = actions.postReviewFailure; // Export the reducer, either as a default or named export
+    postReviewFailure = actions.postReviewFailure,
+    postReviewDisplay = actions.postReviewDisplay,
+    postReviewValidationError = actions.postReviewValidationError; // Export the reducer, either as a default or named export
 
 
 /* harmony default export */ __webpack_exports__["default"] = (postReviewReducer);
 var postReviewSelector = function postReviewSelector(state) {
-  return state.postReview;
+  return state.postReviewReducer;
 };
 
 /***/ }),

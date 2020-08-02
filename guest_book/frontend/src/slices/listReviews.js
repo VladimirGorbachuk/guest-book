@@ -43,4 +43,4 @@ export const { getReviews, getReviewsSuccess, getReviewsFailure } = actions;
 export default reviewsReducer;
 
 // A selector
-export const reviewsSelector = (state) => state.reviews;
+export const reviewsSelector = (state) => state.reviewsReducer;

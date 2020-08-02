@@ -7,13 +7,20 @@ export const postReviewSlice = createSlice({
     sending: false,
     hasErrors: false,
     newReview: {},
+    showForm: false,
+    validationError: null,
   },
   reducers: {
+    postReviewDisplay: (state) => {
+      state.showForm = true;
+    },
     postReviewValidationError: (state, err) => {
       state.hasErrors = true; //need to show particular error
+      state.validationError = err.text;
     },
     postReview: (state) => {
       state.sending = true;
+      state.validationError = null;
     },
     postReviewSuccess: (state, { payload }) => {
       state.review = { ...state.review, payload };
@@ -27,7 +34,7 @@ export const postReviewSlice = createSlice({
   },
 });
 
-export const addReview = (formData) => {
+export const sendReview = (formData) => {
   validateReviewFormData(formData).catch((err) => dispatch(err));
   return async (dispatch) => {
     dispatch(postReview());
@@ -41,8 +48,14 @@ export const addReview = (formData) => {
 
 const { actions, reducer: postReviewReducer } = postReviewSlice;
 // Extract and export each action creator by name
-export const { postReview, postReviewSuccess, postReviewFailure } = actions;
+export const {
+  postReview,
+  postReviewSuccess,
+  postReviewFailure,
+  postReviewDisplay,
+  postReviewValidationError,
+} = actions;
 // Export the reducer, either as a default or named export
 export default postReviewReducer;
 
-export const postReviewSelector = (state) => state.postReview;
+export const postReviewSelector = (state) => state.postReviewReducer;
