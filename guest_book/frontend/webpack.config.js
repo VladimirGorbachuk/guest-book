@@ -1,6 +1,6 @@
 const path = require("path");
 module.exports = {
-  entry: { main: "./src/index.js" },
+  entry: ["./node_modules/regenerator-runtime/runtime.js", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "static/frontend/"),
     filename: "main.js",
