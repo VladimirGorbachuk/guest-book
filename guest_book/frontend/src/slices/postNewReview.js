@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import validateReviewFormData from "../validators/validateReviewFormData";
+import axios from "axios";
+import URLS from "../conf";
 
 export const postReviewSlice = createSlice({
   name: "postReview",
@@ -35,14 +37,16 @@ export const postReviewSlice = createSlice({
 });
 
 export const sendReview = (formData) => {
-  validateReviewFormData(formData).catch((err) => dispatch(err));
+  console.log("before validating");
+  validateReviewFormData(formData);
+  console.log("validated");
   return async (dispatch) => {
-    dispatch(postReview());
-
+    console.log("before awaiting axios");
     axios
       .post(URLS.reviews, formData)
       .then((res) => dispatch(postReviewSuccess(res.data)))
       .catch((err) => dispatch(postReviewFailure(err.message)));
+    console.log("did we await successfully?");
   };
 };
 

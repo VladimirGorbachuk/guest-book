@@ -9,7 +9,6 @@ const store = configureStore({ reducer: rootReducer });
 const App = () => (
   <Provider store={store}>
     <div>
-      <p>renderring</p>
       <ListReviews />
     </div>
   </Provider>

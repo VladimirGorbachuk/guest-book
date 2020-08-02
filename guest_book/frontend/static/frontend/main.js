@@ -36816,7 +36816,7 @@ var store = Object(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_3__["configureStore
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
     store: store
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "renderring"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_ListReviews__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_ListReviews__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -36832,10 +36832,12 @@ var App = function App() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../slices/postNewReview */ "./src/slices/postNewReview.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _slices_postNewReview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../slices/postNewReview */ "./src/slices/postNewReview.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -36852,54 +36854,78 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var PostNewReview = function PostNewReview() {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(""),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       name = _React$useState2[0],
       setName = _React$useState2[1];
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(""),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
       review = _React$useState4[0],
       setReview = _React$useState4[1];
 
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(null),
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(""),
       _React$useState6 = _slicedToArray(_React$useState5, 2),
       image = _React$useState6[0],
-      setImage = _React$useState6[1]; //TODO:currently not used hooks
+      setImage = _React$useState6[1];
 
+  var postReviewState = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_3__["postReviewSelector"]);
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+  var form = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(null);
 
-  var postReviewState = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__["postReviewSelector"]);
+  var submit = function submit(event) {
+    event.preventDefault();
+    var formData = new FormData();
+    formData.append("name", name);
+    formData.append("message", review);
+    console.log(image);
+    formData.append("image", image, image.name);
+    /*
+    console.log("this is another approach", new FormData(form.current));
+    console.log("this is the form", event.target);
+    const formData = new FormData(event.target);
+    console.log("this is the formdata we made", formData);
+    console.log("this is another approach", new FormData(form));
+    */
+
+    console.log(formData);
+    dispatch(Object(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_3__["sendReview"])(formData));
+  };
 
   if (postReviewState.showForm === true) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Enter your name", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+      ref: form,
+      onSubmit: submit
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
       type: "text",
       name: "name",
       value: name,
       onChange: function onChange(e) {
         return setName(e.target.value);
       }
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Write your review below", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
       type: "text",
       name: "review",
       value: review,
       onChange: function onChange(e) {
         return setReview(e.target.value);
       }
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Choose image (optional)", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
       type: "file",
       name: "image",
-      value: image,
+      defaultValue: "",
       onChange: function onChange(e) {
-        return setImage(e.target.value);
+        var fileList = e.target.files;
+
+        if (fileList.length > 0) {
+          setImage(fileList[0]);
+        }
       }
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      type: "submit",
-      onClick: function onClick() {
-        formData = new FormData();
-        addReview(formData);
-      }
-    }))));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      type: "submit"
+    }, "Submit")));
   } else {
     return null;
   }
@@ -37165,6 +37191,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postReviewSelector", function() { return postReviewSelector; });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var _validators_validateReviewFormData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../validators/validateReviewFormData */ "./src/validators/validateReviewFormData.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _conf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../conf */ "./src/conf.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -37174,6 +37203,8 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -37214,23 +37245,24 @@ var postReviewSlice = Object(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__["crea
   }
 });
 var sendReview = function sendReview(formData) {
-  Object(_validators_validateReviewFormData__WEBPACK_IMPORTED_MODULE_1__["default"])(formData)["catch"](function (err) {
-    return dispatch(err);
-  });
+  console.log("before validating");
+  Object(_validators_validateReviewFormData__WEBPACK_IMPORTED_MODULE_1__["default"])(formData);
+  console.log("validated");
   return /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch(postReview());
-              axios.post(URLS.reviews, formData).then(function (res) {
+              console.log("before awaiting axios");
+              axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(_conf__WEBPACK_IMPORTED_MODULE_3__["default"].reviews, formData).then(function (res) {
                 return dispatch(postReviewSuccess(res.data));
               })["catch"](function (err) {
                 return dispatch(postReviewFailure(err.message));
               });
+              console.log("did we await successfully?");
 
-            case 2:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -37294,11 +37326,13 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_2__["combineReducers"])(
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var validateReviewFormData = function validateReviewFormData(formData) {
+  console.log(formData);
+
   if (formData.name.length < 3 || formData.name.length > 32) {
     throw new Error("name should contain minimum 3 and maximum 32 characters");
   } else if (formData.review.length < 16 || formData.review.length > 512) {
     throw new Error("review should contain minimum 16 and maximum 512 characters");
-  } else if (!isImage(formData.image.filename)) {
+  } else if (formData.image.length !== 0 && !isImage(formData.image)) {
     throw new Error("please choose image file with extension jpg/jpeg/png/bmp");
   } else {
     return true;
