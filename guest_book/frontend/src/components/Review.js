@@ -2,13 +2,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Review = (review) => {
+const Review = ({ review }) => {
+  console.log(
+    "that is the review, which we try to render in Review component",
+    review
+  );
+  console.log(
+    "username, message, image:",
+    review.name,
+    review.message,
+    review.image
+  );
   if (!!review.image) {
     return (
       <li>
         <p>
           <span>username:</span>
-          {review.user}
+          {review.name}
         </p>
         <p>
           <span>message:</span>
@@ -27,7 +37,7 @@ const Review = (review) => {
       <li>
         <p>
           <span>username:</span>
-          {review.user}
+          {review.name}
         </p>
         <p>
           <span>message:</span>
