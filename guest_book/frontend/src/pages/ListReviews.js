@@ -1,25 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getReviews } from "../actions";
-import { reviewsSelector } from "../selectors.js";
+import { fetchReviews, reviewsSelector } from "../slices/listReviews";
 
 import Review from "../components/Review";
 
 const ListReviews = () => {
   const dispatch = useDispatch();
-  if (useSelector(reviewsSelector)) {
-    const { reviews, gettingReviews, hasErrors } = useSelector(reviewsSelector);
-  } else {
-    const { reviews, gettingReviews, hasErrors } = {};
-  }
+  const { reviews, loading, hasErrors } = useSelector((state) => {
+    console.log(state);
+    return state.reviewsReducer;
+  });
 
   useEffect(() => {
-    dispatch(getReviews());
+    dispatch(fetchReviews());
   }, [dispatch]);
 
   const renderReviews = () => {
-    if (gettingReviews) return <p>Loading reviews...</p>;
+    if (loading) return <p>Loading reviews...</p>;
     if (hasErrors) return <p>Unable to display reviews</p>;
 
     return reviews.map((review) => (

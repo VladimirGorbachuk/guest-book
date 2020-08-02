@@ -1,4 +1,4 @@
-export const validateFormData = (formData) => {
+const validateReviewFormData = (formData) => {
   if (formData.name.length < 3 || formData.name.length > 32) {
     throw new Error("name should contain minimum 3 and maximum 32 characters");
   } else if (formData.review.length < 16 || formData.review.length > 512) {
@@ -28,3 +28,5 @@ function isImage(filename) {
   }
   return false;
 }
+
+export default validateReviewFormData;

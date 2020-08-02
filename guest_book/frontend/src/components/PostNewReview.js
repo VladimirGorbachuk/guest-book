@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { addReview } from "../actions";
 
-const WriteReview = () => {
+const PostNewReview = () => {
   const [name, setName] = React.useState("");
   const [review, setReview] = React.useState("");
   const [image, setImage] = React.useState(null);
@@ -56,4 +56,4 @@ const WriteReview = () => {
   );
 };
 
-export default WriteReview;
+export default PostNewReview;

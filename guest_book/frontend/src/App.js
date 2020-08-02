@@ -1,14 +1,15 @@
 import React from "react";
 import ListReviews from "./pages/ListReviews";
 import { Provider } from "react-redux";
-import rootReducer from "./reducers/reducers";
 import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./slices/rootReducer";
 
 const store = configureStore({ reducer: rootReducer });
 
 const App = () => (
   <Provider store={store}>
     <div>
+      <p>renderring</p>
       <ListReviews />
     </div>
   </Provider>
