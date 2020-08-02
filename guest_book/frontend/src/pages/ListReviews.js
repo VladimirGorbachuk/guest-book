@@ -19,9 +19,9 @@ const ListReviews = () => {
   const renderReviews = () => {
     if (loading) return <p>Loading reviews...</p>;
     if (hasErrors) return <p>Unable to display reviews</p>;
-
+    console.log("the reviews we are mapping to this page are:", reviews);
     return reviews.map((review) => (
-      <Review key={review.name} review={review} excerpt />
+      <Review key={review.name + review.message} review={review} />
     ));
   };
 

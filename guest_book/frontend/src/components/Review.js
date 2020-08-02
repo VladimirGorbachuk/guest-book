@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Review = (review) => {
-  if (!!image) {
+  if (!!review.image) {
     return (
       <li>
         <p>
@@ -42,11 +42,12 @@ const Review = (review) => {
   }
 };
 
+/*
 Review.propTypes = {
   user: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   image: PropTypes.any.isRequired, //due to possible null image
   date: PropTypes.instanceOf(Date),
 };
-
+*/
 export default Review;

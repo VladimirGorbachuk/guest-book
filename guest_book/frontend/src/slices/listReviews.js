@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import URLS from "../conf";
 
 export const reviewsSlice = createSlice({
   name: "reviews",
@@ -23,32 +25,12 @@ export const reviewsSlice = createSlice({
   },
 });
 
-// Asynchronous thunk action
-/*
-export function fetchReviews() {
-  return async (dispatch) => {
-    dispatch(getReviews());
-
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts" //
-      );
-      const data = await response.json();
-
-      dispatch(getReviewsSuccess(data));
-    } catch (error) {
-      dispatch(getReviewsFailure());
-    }
-  };
-}
-*/
-
 export const fetchReviews = () => {
   return async (dispatch) => {
     dispatch(getReviews());
 
     axios
-      .get(URLS.review)
+      .get(URLS.reviews)
       .then((res) => dispatch(getReviewsSuccess(res.data)))
       .catch((err) => dispatch(getReviewsFailure(err.message)));
   };
