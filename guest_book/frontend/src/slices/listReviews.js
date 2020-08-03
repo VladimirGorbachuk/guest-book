@@ -37,10 +37,8 @@ export const fetchReviews = () => {
 };
 
 const { actions, reducer: reviewsReducer } = reviewsSlice;
-// Extract and export each action creator by name
-export const { getReviews, getReviewsSuccess, getReviewsFailure } = actions;
-// Export the reducer, either as a default or named export
-export default reviewsReducer;
 
-// A selector
+export const { getReviews, getReviewsSuccess, getReviewsFailure } = actions;
+
+export default reviewsReducer;
 export const reviewsSelector = (state) => state.reviewsReducer;

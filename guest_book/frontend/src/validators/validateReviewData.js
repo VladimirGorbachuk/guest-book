@@ -1,5 +1,4 @@
 const validateReviewData = (data) => {
-  console.log("data for validation", data);
   if (data.name.length < 3 || data.name.length > 32) {
     throw new Error("name should contain minimum 3 and maximum 32 characters");
   } else if (data.message.length < 16 || data.message.length > 512) {

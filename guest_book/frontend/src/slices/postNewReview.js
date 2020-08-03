@@ -41,7 +41,6 @@ export const postReviewSlice = createSlice({
 });
 
 export const sendReview = (data) => {
-  console.log("we are sending", data);
   const formData = new FormData();
   formData.append("name", data.name);
   formData.append("message", data.message);
@@ -50,7 +49,6 @@ export const sendReview = (data) => {
     formData.append("image", data.image, data.image.name);
   }
   return async (dispatch) => {
-    console.log("before awaiting axios");
     axios
       .post(URLS.reviews, formData)
       .then((res) => dispatch(postReviewSuccess(res.data)))

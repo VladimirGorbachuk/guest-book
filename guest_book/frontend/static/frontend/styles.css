@@ -26,6 +26,37 @@
   text-size-adjust: 20px;
 }
 
+form {
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  align-items: left;
+  background-color: lightseagreen;
+  padding: 20px;
+}
+
+#form-buttons-div {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+input {
+  width: 60%;
+  margin: 20px;
+}
+
+#input-review {
+  width: 60%;
+  padding: 20px;
+}
+
+.file-input {
+  color: greenyellow;
+  height: 30px;
+  width: 120 px;
+}
+
 .review-image {
   padding: 20px;
   width: 40%;
@@ -66,5 +97,9 @@ span {
 }
 
 #alert-h4 {
-  color: red;
+  color: coral;
+}
+
+label {
+  color: whitesmoke;
 }

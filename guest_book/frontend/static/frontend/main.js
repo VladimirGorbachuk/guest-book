@@ -37673,6 +37673,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../slices/postNewReview */ "./src/slices/postNewReview.js");
 /* harmony import */ var _validators_validateReviewData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../validators/validateReviewData */ "./src/validators/validateReviewData.js");
+/* harmony import */ var _slices_listReviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../slices/listReviews */ "./src/slices/listReviews.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -37684,6 +37685,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -37709,8 +37711,8 @@ var PostNewReview = function PostNewReview() {
 
   var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
       _React$useState8 = _slicedToArray(_React$useState7, 2),
-      alert = _React$useState8[0],
-      setAlert = _React$useState8[1];
+      alertInput = _React$useState8[0],
+      setAlertInput = _React$useState8[1];
 
   var postReviewState = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__["postReviewSelector"]);
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
@@ -37719,13 +37721,15 @@ var PostNewReview = function PostNewReview() {
     event.preventDefault();
     validate();
 
-    if (alert === "") {
+    if (alertInput === "") {
       dispatch(Object(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__["sendReview"])({
         name: name,
         message: review,
         image: image
       }));
       dispatch(Object(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__["postReviewHide"])());
+      dispatch(Object(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__["buttonDisplay"])());
+      dispatch(Object(_slices_listReviews__WEBPACK_IMPORTED_MODULE_4__["fetchReviews"])());
     }
   };
 
@@ -37736,33 +37740,43 @@ var PostNewReview = function PostNewReview() {
         message: review,
         image: image
       });
-      setAlert("");
+      setAlertInput("");
     } catch (err) {
-      setAlert( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, err.message));
+      setAlertInput( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        id: "alert-h4"
+      }, err.message));
     }
   };
 
   console.log(postReviewState.showForm);
 
   if (postReviewState.showForm === true) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, alert, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, alertInput, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
       onSubmit: submit,
       onChange: validate
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      "for": "name"
+    }, "enter your name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       type: "text",
       name: "name",
       value: name,
       onChange: function onChange(e) {
         return setName(e.target.value);
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      "for": "review"
+    }, "enter your review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       type: "text",
       name: "review",
+      id: "input-review",
       value: review,
       onChange: function onChange(e) {
         return setReview(e.target.value);
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      "for": "image"
+    }, "you can upload your image (optionally)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      className: "file-input",
       type: "file",
       name: "image",
       defaultValue: "",
@@ -37773,14 +37787,16 @@ var PostNewReview = function PostNewReview() {
           setImage(fileList[0]);
         }
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: "form-buttons-div"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "submit"
-    }, "Submit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "close",
       onClick: function onClick() {
         dispatch(Object(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__["postReviewHide"])());
       }
-    }, "Close dialogue"));
+    }, "Close dialogue"))));
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
   }
@@ -38151,7 +38167,6 @@ var postReviewSlice = Object(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__["crea
   }
 });
 var sendReview = function sendReview(data) {
-  console.log("we are sending", data);
   var formData = new FormData();
   formData.append("name", data.name);
   formData.append("message", data.message);
@@ -38166,14 +38181,13 @@ var sendReview = function sendReview(data) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log("before awaiting axios");
               axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_conf__WEBPACK_IMPORTED_MODULE_2__["default"].reviews, formData).then(function (res) {
                 return dispatch(postReviewSuccess(res.data));
               })["catch"](function (err) {
                 return dispatch(postReviewFailure(err.message));
               });
 
-            case 2:
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -38255,8 +38269,6 @@ var dateConvert = function dateConvert(dateFromServer) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var validateReviewData = function validateReviewData(data) {
-  console.log("data for validation", data);
-
   if (data.name.length < 3 || data.name.length > 32) {
     throw new Error("name should contain minimum 3 and maximum 32 characters");
   } else if (data.message.length < 16 || data.message.length > 512) {
