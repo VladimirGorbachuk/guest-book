@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import dateConversion from "../utils/dateConversion";
 
 const Review = ({ review }) => {
-  console.log(
-    "that is the review, which we try to render in Review component",
-    review
-  );
-  console.log(
-    "username, message, image:",
-    review.name,
-    review.message,
-    review.image
-  );
-  if (!!review.image) {
-    return (
-      <li>
+  const [imageBlock, setImageBlock] = useState("");
+  if (review.image !== null && imageBlock === "") {
+    setImageBlock(
+      <div className="review-image">
+        <span>image:</span>
+        <img src={review.image} alt="image"></img>
+      </div>
+    );
+  }
+  return (
+    <div className="review">
+      <div className="review-details">
         <p>
           <span>username:</span>
           {review.name}
@@ -22,32 +22,14 @@ const Review = ({ review }) => {
           <span>message:</span>
           {review.message}:
         </p>
-        <span>image:</span>
-        <img src={review.image} alt="image"></img>
         <p>
           <span>date posted:</span>
-          {review.datePosted}
+          {dateConversion(review.created_at)}
         </p>
-      </li>
-    );
-  } else {
-    return (
-      <li>
-        <p>
-          <span>username:</span>
-          {review.name}
-        </p>
-        <p>
-          <span>message:</span>
-          {review.message}
-        </p>
-        <p>
-          <span>date posted:</span>
-          {review.datePosted}
-        </p>
-      </li>
-    );
-  }
+      </div>
+      {imageBlock}
+    </div>
+  );
 };
 
 export default Review;

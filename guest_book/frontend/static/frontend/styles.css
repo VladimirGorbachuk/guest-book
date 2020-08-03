@@ -1,0 +1,66 @@
+#main-react-container {
+  width: auto;
+  padding: 20px;
+  display: flex;
+  background-color: seagreen;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-color: lightseagreen;
+  padding: 20 px;
+  margin: 10px;
+  width: 80%;
+  border-radius: 30px;
+  justify-content: space-around;
+}
+
+.review-details {
+  padding: 20px;
+  width: 40%;
+  text-size-adjust: 20px;
+}
+
+.review-image {
+  padding: 20px;
+  width: 40%;
+}
+
+img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+  background-color: greenyellow;
+  border-radius: 10px;
+  box-shadow: greenyellow;
+  border-width: 0.5px;
+  border-color: rgb(11, 184, 34);
+}
+
+button:hover {
+  background-color: rgb(208, 255, 0);
+}
+
+p {
+  color: wheat;
+  font-size: 25px;
+}
+
+h1 {
+  color: white;
+  font-size: 30px;
+  align-self: center;
+}
+
+span {
+  color: white;
+}

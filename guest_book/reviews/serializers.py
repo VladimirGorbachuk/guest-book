@@ -6,7 +6,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Review
-        fields = ['name','message','image']
+        fields = ['name','message','image','created_at']
     name = serializers.CharField(
         min_length=3,
         max_length=32,)

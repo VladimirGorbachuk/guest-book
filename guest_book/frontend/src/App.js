@@ -8,7 +8,7 @@ const store = configureStore({ reducer: rootReducer });
 
 const App = () => (
   <Provider store={store}>
-    <div>
+    <div id="main-react-container">
       <ListReviews />
     </div>
   </Provider>

@@ -9,6 +9,7 @@ export const postReviewSlice = createSlice({
     hasErrors: false,
     newReview: {},
     showForm: false,
+    showButton: true,
   },
   reducers: {
     postReviewDisplay: (state) => {
@@ -16,6 +17,12 @@ export const postReviewSlice = createSlice({
     },
     postReviewHide: (state) => {
       state.showForm = false;
+    },
+    buttonDisplay: (state) => {
+      state.showButton = true;
+    },
+    buttonHide: (state) => {
+      state.showButton = false;
     },
     postReview: (state) => {
       state.sending = true;
@@ -59,6 +66,8 @@ export const {
   postReviewFailure,
   postReviewDisplay,
   postReviewHide,
+  buttonDisplay,
+  buttonHide,
   postReviewValidationError,
 } = actions;
 
