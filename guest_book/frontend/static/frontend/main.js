@@ -37694,25 +37694,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var PostNewReview = function PostNewReview() {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      name = _React$useState2[0],
-      setName = _React$useState2[1];
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      name = _useState2[0],
+      setName = _useState2[1];
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      review = _React$useState4[0],
-      setReview = _React$useState4[1];
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      review = _useState4[0],
+      setReview = _useState4[1];
 
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
-      _React$useState6 = _slicedToArray(_React$useState5, 2),
-      image = _React$useState6[0],
-      setImage = _React$useState6[1];
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      image = _useState6[0],
+      setImage = _useState6[1];
 
-  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
-      _React$useState8 = _slicedToArray(_React$useState7, 2),
-      alertInput = _React$useState8[0],
-      setAlertInput = _React$useState8[1];
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      alertInput = _useState8[0],
+      setAlertInput = _useState8[1];
 
   var postReviewState = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_slices_postNewReview__WEBPACK_IMPORTED_MODULE_2__["postReviewSelector"]);
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
@@ -38074,15 +38074,12 @@ var fetchReviews = function fetchReviews() {
   }();
 };
 var actions = reviewsSlice.actions,
-    reviewsReducer = reviewsSlice.reducer; // Extract and export each action creator by name
-
+    reviewsReducer = reviewsSlice.reducer;
 var getReviews = actions.getReviews,
     getReviewsSuccess = actions.getReviewsSuccess,
-    getReviewsFailure = actions.getReviewsFailure; // Export the reducer, either as a default or named export
+    getReviewsFailure = actions.getReviewsFailure;
 
-
-/* harmony default export */ __webpack_exports__["default"] = (reviewsReducer); // A selector
-
+/* harmony default export */ __webpack_exports__["default"] = (reviewsReducer);
 var reviewsSelector = function reviewsSelector(state) {
   return state.reviewsReducer;
 };
