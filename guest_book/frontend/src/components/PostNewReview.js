@@ -37,7 +37,6 @@ const PostNewReview = () => {
       setAlertInput(<h4 id={"alert-h4"}>{err.message}</h4>);
     }
   };
-  console.log(postReviewState.showForm);
 
   if (postReviewState.showForm === true) {
     return (
