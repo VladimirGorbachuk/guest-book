@@ -31,7 +31,7 @@ const PostNewReview = () => {
       validateReviewData({ name, message: review, image });
       setAlert("");
     } catch (err) {
-      setAlert(<h4>{err.message}</h4>);
+      setAlert(<h4 id={"alert-h4"}>{err.message}</h4>);
     }
   };
   console.log(postReviewState.showForm);
