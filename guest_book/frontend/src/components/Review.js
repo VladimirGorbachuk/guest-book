@@ -1,6 +1,4 @@
-//a React component corresponding to one review
 import React from "react";
-import PropTypes from "prop-types";
 
 const Review = ({ review }) => {
   console.log(
@@ -52,12 +50,4 @@ const Review = ({ review }) => {
   }
 };
 
-/*
-Review.propTypes = {
-  user: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
-  image: PropTypes.any.isRequired, //due to possible null image
-  date: PropTypes.instanceOf(Date),
-};
-*/
 export default Review;

@@ -1,12 +1,12 @@
-const validateReviewFormData = (formData) => {
-  console.log(formData);
-  if (formData.name.length < 3 || formData.name.length > 32) {
+const validateReviewData = (data) => {
+  console.log("data for validation", data);
+  if (data.name.length < 3 || data.name.length > 32) {
     throw new Error("name should contain minimum 3 and maximum 32 characters");
-  } else if (formData.review.length < 16 || formData.review.length > 512) {
+  } else if (data.message.length < 16 || data.message.length > 512) {
     throw new Error(
       "review should contain minimum 16 and maximum 512 characters"
     );
-  } else if (formData.image.length !== 0 && !isImage(formData.image)) {
+  } else if (data.image !== "" && !isImage(data.image.name)) {
     throw new Error("please choose image file with extension jpg/jpeg/png/bmp");
   } else {
     return true;
@@ -30,4 +30,4 @@ function isImage(filename) {
   return false;
 }
 
-export default validateReviewFormData;
+export default validateReviewData;

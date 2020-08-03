@@ -12,7 +12,7 @@ def review_list(request):
     """
     
     if request.method == 'GET':
-        reviews = Review.objects.all()
+        reviews = Review.objects.order_by('-created_at')
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
 

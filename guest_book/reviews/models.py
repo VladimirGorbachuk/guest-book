@@ -28,3 +28,6 @@ class Review(models.Model):
             img = Image.open(self.image.path)
             img.thumbnail(IMAGE_SIZE)
             img.save(self.image.path)
+
+    def get_all(self):
+        return Review.objects.order_by('-created_at').all()

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import validateReviewFormData from "../validators/validateReviewFormData";
 import axios from "axios";
 import URLS from "../conf";
 
@@ -10,15 +9,13 @@ export const postReviewSlice = createSlice({
     hasErrors: false,
     newReview: {},
     showForm: false,
-    validationError: null,
   },
   reducers: {
     postReviewDisplay: (state) => {
       state.showForm = true;
     },
-    postReviewValidationError: (state, err) => {
-      state.hasErrors = true; //need to show particular error
-      state.validationError = err.text;
+    postReviewHide: (state) => {
+      state.showForm = false;
     },
     postReview: (state) => {
       state.sending = true;
@@ -36,30 +33,35 @@ export const postReviewSlice = createSlice({
   },
 });
 
-export const sendReview = (formData) => {
-  console.log("before validating");
-  validateReviewFormData(formData);
-  console.log("validated");
+export const sendReview = (data) => {
+  console.log("we are sending", data);
+  const formData = new FormData();
+  formData.append("name", data.name);
+  formData.append("message", data.message);
+
+  if (data.image !== "") {
+    formData.append("image", data.image, data.image.name);
+  }
   return async (dispatch) => {
     console.log("before awaiting axios");
     axios
       .post(URLS.reviews, formData)
       .then((res) => dispatch(postReviewSuccess(res.data)))
       .catch((err) => dispatch(postReviewFailure(err.message)));
-    console.log("did we await successfully?");
   };
 };
 
 const { actions, reducer: postReviewReducer } = postReviewSlice;
-// Extract and export each action creator by name
+
 export const {
   postReview,
   postReviewSuccess,
   postReviewFailure,
   postReviewDisplay,
+  postReviewHide,
   postReviewValidationError,
 } = actions;
-// Export the reducer, either as a default or named export
+
 export default postReviewReducer;
 
 export const postReviewSelector = (state) => state.postReviewReducer;

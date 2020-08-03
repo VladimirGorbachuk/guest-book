@@ -8,5 +8,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-//at this point this step does simply nothing.
-//But for app scaling and adding new features and pages it would be perfect
